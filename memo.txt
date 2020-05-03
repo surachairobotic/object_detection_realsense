@@ -1,0 +1,33 @@
+rostopic pub /foo std_msgs/Float64 '{data: 1.2}'
+
+rosrun nodelet nodelet load nodelet_tutorial_math/Plus nodelet_manager __name:=nodelet1 nodelet1/in:=foo _value:=1.1
+
+depth_image_proc/point_cloud_xyzrgb
+
+rosrun nodelet nodelet load depth_image_proc/point_cloud_xyzrgb nodelet_manager __name:=nodelet_pc /depth_registered/image_rect:=/camera/aligned_depth_to_color/image_raw /rgb/image_rect_color:=/camera/color/image_raw /rgb/camera_info:=/camera/aligned_depth_to_color/camera_info
+
+/camera/aligned_depth_to_color/image_raw [sensor_msgs/Image] 1 publisher
+/depth_registered/image_rect
+sub_depth_.subscribe(*depth_it_, "image_rect",       1, depth_hints);
+
+/camera/color/image_raw [sensor_msgs/Image] 1 publisher
+/rgb/image_rect_color
+sub_rgb_  .subscribe(*rgb_it_,   "image_rect_color", 1, hints);
+
+/camera/aligned_depth_to_color/camera_info [sensor_msgs/CameraInfo] 1 publisher
+/rgb/camera_info
+sub_info_ .subscribe(*rgb_nh_,   "camera_info",      1);
+
+
+
+roscore
+open realsense by rs_pc
+recieve sensor_msgs::image [rgb, depth]
+convert sensor_msgs::image to opencv image
+using tenserflow to detect object
+use coordinate to get range of object
+draw rect and range into picture
+save video
+
+
+rosrun image_view image_saver image:=/datmo/color

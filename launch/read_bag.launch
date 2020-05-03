@@ -1,0 +1,8 @@
+<launch>
+
+
+  <node name="read_bag" pkg="datmo" type="read_bag.py" output="screen">
+  </node>
+
+
+</launch>

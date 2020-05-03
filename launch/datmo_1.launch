@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="object_01" pkg="datmo" type="object_01.py" output="screen">
+  </node>
+
+</launch>

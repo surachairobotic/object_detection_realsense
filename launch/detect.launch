@@ -1,0 +1,8 @@
+<launch>
+
+
+  <node name="detect" pkg="datmo" type="detect.py" output="screen">
+  </node>
+
+
+</launch>
